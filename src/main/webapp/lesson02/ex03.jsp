@@ -23,7 +23,16 @@
 		<label>하와이안피자<input type="checkbox" name="food" value="pizza"></label>
 		<label>번데기<input type="checkbox" name="food" value="pupa"></label><br><br>
 		
-		<button type="submit">완료</button>
+		5. 좋아하는 과일을 선택하세요.<br>
+		<select name="fruit">
+			<option>사과</option>
+			<option>복숭아</option>
+			<option>파인애플</option>
+			<option>체리</option>
+			<option>바나나</option>
+		</select><br><br>
+		
+		<input type="submit" value="제출">
 	</form>
 </body>
 </html>
