@@ -10,8 +10,6 @@
 <body>
 	<!-- 1 -->
 	<%!
-		int num = 50;
-	
 		public int sumNum(int num){
 			int sum = 0;
 			for(int i = 1; i <= num; i++) {
@@ -21,7 +19,7 @@
 		}
 	%>
 	
-	1부터 <%= num %>까지의 합은 <%= sumNum(num) %> 입니다.
+	1부터 50까지의 합은 <%= sumNum(50) %> 입니다.
 	
 	<br>
 	<!-- 2 -->
@@ -43,7 +41,7 @@
 		int score = 0;
 		for(String xo : scoreList) {
 			if(xo.equals("O")) {
-				score += 10;
+				score += 100 / scoreList.size();
 			}
 		}
 	%>
