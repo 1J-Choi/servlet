@@ -33,11 +33,8 @@
 	    
 	    List<Map<String, Object>> searchedList = new ArrayList();
 	    for(Map<String, Object> searchedMap : list) {
-	    	if(point4 != null) {
-	    		double score = (double) searchedMap.get("point");
-	    		if(score <= 4.0){
-	    			continue;
-	    		}
+	    	if(point4 != null && (double) searchedMap.get("point") <= 4.0) {
+	    		continue;
 	    	}
 	    	if(searchedMap.get("menu").equals(search)) {
 	    		searchedList.add(searchedMap);
@@ -47,7 +44,7 @@
 	
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<h1>검색 결과</h1>
+			<h1 class="text-center">검색 결과</h1>
 		</div>
 		<table class="table text-center">
 			<thead>
