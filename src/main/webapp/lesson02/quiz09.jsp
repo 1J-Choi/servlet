@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<head>
 <meta charset="UTF-8">
 <title>채널 안내</title>
 <link rel="stylesheet"
@@ -17,6 +18,12 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
 	crossorigin="anonymous"></script>
+<style>
+header{height: ;}
+nav{height: ;}
+.contents{height: ;}
+footer{height: 50px;}
+</style>
 </head>
 <body>
 	<%
@@ -57,6 +64,8 @@
     list.add(map);
     map = new HashMap<String, String>() {{ put("ch", "121"); put("name", "KBSN 스포츠"); put("category", "스포츠"); } };
     list.add(map);
+    
+    String category = request.getParameter("category");
 	%>
 	
 	<div class="container">
@@ -66,14 +75,14 @@
 		<nav class="bg-danger d-flex align-items-center">
 			<ul class="nav nav-fill w-100">
 				<li class="nav-item"><a href="/lesson02/quiz09.jsp" class="nav-link text-white font-weight-bold">전체</a></li>
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=지상파"  class="nav-link text-white font-weight-bold">지상파</a></li>
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=드라마"  class="nav-link text-white font-weight-bold">드라마</a></li>
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=예능"  class="nav-link text-white font-weight-bold">예능</a></li>
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=영화"  class="nav-link text-white font-weight-bold">영화</a></li>
-				<li class="nav-item"><a href="/lesson02/quiz09_1.jsp?category=스포츠"  class="nav-link text-white font-weight-bold">스포츠</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=지상파"  class="nav-link text-white font-weight-bold">지상파</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=드라마"  class="nav-link text-white font-weight-bold">드라마</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=예능"  class="nav-link text-white font-weight-bold">예능</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=영화"  class="nav-link text-white font-weight-bold">영화</a></li>
+				<li class="nav-item"><a href="/lesson02/quiz09.jsp?category=스포츠"  class="nav-link text-white font-weight-bold">스포츠</a></li>
 			</ul>
 		</nav>
-		<div>
+		<section class="contents">
 			<table class="table text-center">
 				<thead>
 					<tr>
@@ -85,6 +94,8 @@
 				<tbody>
 					<%
 					for(Map<String, String> channel : list) {
+						// 카테고리가 없을 땐 모두 카테고리가 있을 땐 해당 카테고리만
+						if(category == null || channel.get("category").equals(category)) {
 					%>
 					<tr>
 						<td><%= channel.get("ch") %></td>
@@ -92,11 +103,12 @@
 						<td><%= channel.get("category") %></td>
 					</tr>
 					<%
+						}
 					}
 					%>
 				</tbody>
 			</table>
-		</div>
+		</section>
 		<footer class="d-flex align-items-center justify-content-center">
 			<adress class="text-center text-secondary">Copyright 2024. cwj All Rights Reserved</adress>
 		</footer>

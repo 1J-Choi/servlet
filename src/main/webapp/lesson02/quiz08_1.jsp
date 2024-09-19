@@ -77,12 +77,11 @@
 
 	<div class="container">
 		<div class="d-flex">
-			<img src="<%= searchedbook.get("image") %>" alt="<%= searchedbook.get("title")  + " 사진"%>"
-			width="200">
+			<img src="<%= searchedbook.get("image") %>" alt="책 표지"	width="200">
 			<div>
-				<h1 class="display-1 text-weight-bold"><%= searchedbook.get("title") %></h1>
-				<p class="display-3 text-info"><%= searchedbook.get("author") %></p>
-				<p class="display-4 text-secondary"><%= searchedbook.get("publisher") %></p>
+				<div class="display-1 font-weight-bold"><%= searchedbook.get("title") %></div>
+				<span class="display-3 text-info d-block"><%= searchedbook.get("author") %></span>
+				<span class="display-4 text-secondary d-block"><%= searchedbook.get("publisher") %></span>
 			</div>
 		</div>
 	</div>
