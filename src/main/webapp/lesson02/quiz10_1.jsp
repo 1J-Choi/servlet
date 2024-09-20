@@ -115,9 +115,6 @@ footer {height:200px;}
     	if((id != null && musicId == Integer.parseInt(id)) ||
     			(title != null && musicTitle.equals(title))) {
     		target = music;
-    		String time = "" + target.get("time");
-    		time = time.substring(0, 1) + " : " + time.substring(1, 3);
-    		target.put("time", time);
     		break;
     	}
     }
@@ -165,7 +162,7 @@ footer {height:200px;}
 					<div class="display-4"><%= target.get("title") %></div>
 					<div class="text-success font-weight-bold mb-2"><%= target.get("singer") %></div>
 					<div class="d-flex text-left text-secondary">
-						<div class="mr-3">
+						<div class="mr-4">
 							<div>앨범</div>
 							<div>재생시간</div>
 							<div>작곡가</div>
@@ -173,7 +170,7 @@ footer {height:200px;}
 						</div>
 						<div>
 							<div><%= target.get("album") %></div>
-							<div><%= target.get("time") %></div>
+							<div><%= (int)target.get("time") / 60 %> : <%= (int)target.get("time") % 60 %></div>
 							<div><%= target.get("composer") %></div>
 							<div><%= target.get("lyricist") %></div>
 						</div>
