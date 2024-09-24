@@ -14,6 +14,22 @@
 header{background-color: #F79F81;}
 nav{background-color: #F79F81;}
 </style>
+<script type="text/javascript">
+	function checkForm(){
+		if(document.goods.sellerId.value == "" || document.goods.sellerId.value == 0){
+	    	alert("판매자가 잘 못 입력되었습니다.");
+	        return false;
+	    }
+		if(document.goods.title.value == ""){
+	    	alert("제목을 입력해주세요.");
+	        return false;
+	    }
+		if(document.goods.price.value == ""){
+	    	alert("가격이 잘 못 입력되었습니다.");
+	        return false;
+	    }
+	}
+</script>
 </head>
 <body>
 <%
@@ -39,7 +55,7 @@ nav{background-color: #F79F81;}
 		</nav>
 		<section class="contents">
 			<h1>물건 올리기</h1>
-			<form method="post" action="/lesson03/insert_quiz03">
+			<form method="post" action="/lesson03/insert_quiz03" name="goods">
 				<div class="d-flex justify-items-center">
 					<select name="sellerId">
 						<option value="0" checked>-아이디 선택-</option>
@@ -66,7 +82,7 @@ nav{background-color: #F79F81;}
   						</div>
 						<input type="text" name="pictureUrl" class="form-control">
 				</div>
-				<button type="submit" class="btn btn-light">저장</button>
+				<input type="submit" class="btn btn-light w-100" value="저장" onclick="checkForm()">
 			</form>
 		</section>
 		<footer>

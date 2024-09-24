@@ -16,9 +16,15 @@ header{background-color: #F79F81;}
 nav{background-color: #F79F81;}
 .parent-media-box {gap: 20px 35px;}
 .media-box {
-	border: thick;
+	border: solid #F79F81;
+	width: 30%;
+	height: 250px; 
 	border-color: #F79F81;
 	}
+.text-orange {color: #F79F81;}
+.media-box:hover {
+	background-color: #F79F81;
+}
 </style>
 <body>
  <%
@@ -44,26 +50,26 @@ nav{background-color: #F79F81;}
 				<li class="nav-item"><a href="#" class="nav-link text-white font-weight-bold">마이 페이지</a></li>
 			</ul>
 		</nav>
-		<section class="contents">
-			<section class="parent-media-box d-flex flex-wrap align-items-center">
+		<section class="contents mt-2">
+			<section class="parent-media-box d-flex flex-wrap align-items-center justify-content-between">
 			<%
 			while(result.next()) {
 			%>
-				<article class="media-box w-33">
+				<article class="media-box justify-content-center p-2">
 				<%
-					if(result.getString("pictureUrl") != null) {
+					if(result.getString("pictureUrl") != null && !result.getString("pictureUrl").equals("")) {
 				%>
-					<img src="<%= result.getString("pictureUrl") %>" alt="썸네일 이미지" width="280" height="150">
+					<img src="<%= result.getString("pictureUrl") %>" alt="썸네일 이미지" width="100%" height="150">
 				<%
 					} else {
 				%>
-					<h1>이미지 없음</h1>
+					<img src="https://www.spectory.net/src/images/noImg.gif" alt="썸네일 이미지 없음" width="100%" height="150">
 				<%
 					}
 				%>
-					<div><%= result.getString("title") %></div>
-					<div><%= result.getInt("price") %>원</div>
-					<div><%= result.getString("nickname") %></div>
+					<div class="font-weight-bold"><%= result.getString("title") %></div>
+					<div class="text-secondary"><%= result.getInt("price") %>원</div>
+					<div class="text-orange font-weight-bold"><%= result.getString("nickname") %></div>
 				</article>
 			<%
 			}
