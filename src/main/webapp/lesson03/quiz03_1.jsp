@@ -10,26 +10,19 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-</head>
 <style>
 header{background-color: #F79F81;}
 nav{background-color: #F79F81;}
-.parent-media-box {gap: 20px 35px;}
-.media-box {
-	border: thick;
-	border-color: #F79F81;
-	}
 </style>
+</head>
 <body>
- <%
- 	MysqlService ms = MysqlService.getInstance();
- 	ms.connect();
- 	
- 	String selectQuery = "select * from `used_goods` as `a`"
- 			+ "join `seller` as `b`"
- 			+ "on a.sellerId = b.id";
+<%
+	MysqlService ms = MysqlService.getInstance();
+	ms.connect();
+	
+	String selectQuery = "select * from `seller`";
  	ResultSet result = ms.select(selectQuery);
- %>
+%>
 
 	<div class="container">
 		<header>
@@ -45,30 +38,36 @@ nav{background-color: #F79F81;}
 			</ul>
 		</nav>
 		<section class="contents">
-			<section class="parent-media-box d-flex flex-wrap align-items-center">
-			<%
-			while(result.next()) {
-			%>
-				<article class="media-box w-33">
-				<%
-					if(result.getString("pictureUrl") != null) {
-				%>
-					<img src="<%= result.getString("pictureUrl") %>" alt="썸네일 이미지" width="280" height="150">
-				<%
-					} else {
-				%>
-					<h1>이미지 없음</h1>
-				<%
+			<h1>물건 올리기</h1>
+			<form method="post" action="/lesson03/insert_quiz03">
+				<div class="d-flex justify-items-center">
+					<select name="sellerId">
+						<option value="0" checked>-아이디 선택-</option>
+					<%
+					while(result.next()) {
+					%>
+						<option value="<%= result.getInt("id") %>"><%= result.getString("nickname") %></option>
+					<%
 					}
-				%>
-					<div><%= result.getString("title") %></div>
-					<div><%= result.getInt("price") %>원</div>
-					<div><%= result.getString("nickname") %></div>
-				</article>
-			<%
-			}
-			%>
-			</section>
+					%>
+					</select>
+					<input type="text" name="title" class="form-control" placeholder="제목">
+					<div class="input-group">
+						<input type="number" name="price" class="form-control">
+						<div class="input-group-append">
+    						<span class="input-group-text">원</span>
+  						</div>
+					</div>
+				</div>
+				<textarea name="description" class="w-100"></textarea>
+				<div class="input-group">
+						<div class="input-group-append">
+    						<span class="input-group-text">이미지 url</span>
+  						</div>
+						<input type="text" name="pictureUrl" class="form-control">
+				</div>
+				<button type="submit" class="btn btn-light">저장</button>
+			</form>
 		</section>
 		<footer>
 			<div class="d-flex align-items-center justify-content-center">
@@ -76,8 +75,5 @@ nav{background-color: #F79F81;}
 			</div>
 		</footer>
 	</div>
-<%
-	ms.disconnect();
-%>
 </body>
 </html>
